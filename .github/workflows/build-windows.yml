@@ -18,10 +18,13 @@ jobs:
         with:
           node-version: 18
 
+      # ✅ 新增：安装 Windows C++ 构建环境（关键）
+      - name: Setup MSVC & Windows SDK
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: Install dependencies
         run: npm install
 
-      # 关键：sqlite3 必须为 Windows 重新编译
       - name: Rebuild native modules
         run: npx electron-rebuild
 
