@@ -1,4 +1,4 @@
-name: Build Windows Installer
+name: Build Windows EXE (Packager)
 
 on:
   push:
@@ -10,16 +10,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 关键：给 sqlite3 / native module 用
-      - name: Setup MSVC & Windows SDK
+      - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Install dependencies
@@ -28,11 +27,16 @@ jobs:
       - name: Rebuild native modules
         run: npx electron-rebuild
 
-      - name: Build Windows installer
+      - name: Build Windows app
         run: npm run build:win
 
-      - name: Upload installer
+      # 👇 你要退回到的就是这一段
+      - name: Copy ffmpeg.dll to exe dir
+        run: |
+          copy dist\SafePatrolAdmin-win32-x64\ffmpeg.dll dist\SafePatrolAdmin-win32-x64\
+
+      - name: Upload exe
         uses: actions/upload-artifact@v4
         with:
-          name: SafePatrolAdmin-Windows-Installer
-          path: dist/*.exe
+          name: SafePatrolAdmin-Windows-EXE
+          path: dist/SafePatrolAdmin-win32-x64/**

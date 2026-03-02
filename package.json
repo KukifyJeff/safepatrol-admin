@@ -5,33 +5,8 @@
   "main": "main.js",
 
   "scripts": {
-    "start": "electron .",
-    "build:win": "electron-builder --win --x64"
-  },
-
-  "build": {
-    "appId": "com.safepatrol.admin",
-    "productName": "SafePatrolAdmin",
-
-    "directories": {
-      "output": "dist"
-    },
-
-    "files": [
-      "**/*"
-    ],
-
-    "win": {
-      "target": "nsis",
-      "icon": "build/icon.ico"
-    },
-
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
-    }
+  "start": "electron .",
+  "build:win": "electron-packager . SafePatrolAdmin --platform=win32 --arch=x64 --out=dist --overwrite --icon=build/icon.ico"
   },
 
   "dependencies": {
