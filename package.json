@@ -10,11 +10,13 @@
   },
 
   "dependencies": {
+
+    "electron": "^26.0.0",
     "exceljs": "^4.3.0",
     "sqlite3": "^5.1.6"
   },
 
   "devDependencies": {
-    "electron": "^26.0.0"
+    "electron-packager": "^17.1.2"
   }
 }
