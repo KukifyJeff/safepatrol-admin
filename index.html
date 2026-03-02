@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SafePatrol 管理工具</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="container">
+    <aside id="sidebar">
+      <h2>菜单</h2>
+      <ul>
+        <li><a href="#" id="menu-detail">点检详情与导出</a></li>
+        <li><a href="#" id="menu-missrate">漏检率统计</a></li>
+        <li><a href="#" id="menu-items">点检项管理</a></li>
+        <li><a href="#" id="menu-employees">员工管理</a></li>
+      </ul>
+    </aside>
+    <main id="main-content">
+      <!-- Detail page -->
+      <div id="detail-page" class="page-content">
+        <div id="toolbar">
+          <button id="btn-select-db">选择数据库</button>
+          <label for="route-select">路线</label>
+          <select id="route-select"><option value="">--请选择--</option></select>
+          <label for="date-input">日期</label>
+          <input type="date" id="date-input">
+          <button id="btn-preview">预览当日点检明细</button>
+          <button id="btn-export">导出当日详情表</button>
+        </div>
+        <div id="table-container">
+          <table id="results-table">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>路线名</th>
+                <th>点检员</th>
+                <th>值</th>
+                <th>班次</th>
+                <th>点位ID</th>
+                <th>点位名</th>
+                <th>点检频率</th>
+                <th>点检频次</th>
+                <th>到位情况</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Miss rate statistics page -->
+      <div id="missrate-page" class="page-content" style="display: none;">
+        <div id="missrate-toolbar">
+          <button id="btn-select-db-missrate">选择数据库</button>
+          <label for="route-select-missrate">路线</label>
+          <select id="route-select-missrate"><option value="">--请选择--</option></select>
+          <label for="start-date-input">起始日期</label>
+          <input type="date" id="start-date-input">
+          <label for="end-date-input">结束日期</label>
+          <input type="date" id="end-date-input">
+          <button id="btn-query-missrate">查询</button>
+        </div>
+        <div id="missrate-container" style="display: flex; gap: 16px; flex: 1; overflow: hidden;">
+          <!-- Left side: daily shift statistics -->
+          <div id="missrate-left" style="flex: 1; overflow: auto;">
+            <h3>班次漏检率统计</h3>
+            <table id="missrate-left-table">
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>班次</th>
+                  <th>值</th>
+                  <th>已检（点位数）</th>
+                  <th>未检（点位数）</th>
+                  <th>漏检率</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right side: value statistics -->
+          <div id="missrate-right" style="flex: 1; overflow: auto;">
+            <h3>值漏检率统计</h3>
+            <table id="missrate-right-table">
+              <thead>
+                <tr>
+                  <th>班次</th>
+                  <th>已检点位数</th>
+                  <th>未检点位数</th>
+                  <th>漏检率</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- detail modal -->
+  <div id="detailModal" class="modal">
+    <div class="modal-content">
+      <h3>点检详情</h3>
+      <table id="detailTable">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>时间</th>
+            <th>点位ID</th>
+            <th>点位名</th>
+            <th>设备名</th>
+            <th>itemId</th>
+            <th>点检项</th>
+            <th>频率</th>
+            <th>频次(slot)</th>
+            <th>检测值</th>
+            <th>是否正常</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button id="closeDetail">关闭</button>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "safepatrol-admin-tool",
+  "version": "0.1.0",
+  "description": "SafePatrol管理工具 - 桌面应用，基于Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+
+    "build:mac": "electron-packager . SafePatrolAdmin --platform=darwin --arch=x64 --out=dist --overwrite",
+
+    "build:win": "electron-packager . SafePatrolAdmin --platform=win32 --arch=x64 --out=dist --overwrite --icon=assets/icon.ico"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^26.0.0",
+    "exceljs": "^4.3.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
+  }
+}

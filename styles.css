@@ -1,0 +1,270 @@
+/* root variables for easy theming */
+:root {
+  --sidebar-bg: #2c3e50;
+  --sidebar-text: #ecf0f1;
+  --sidebar-hover: #34495e;
+  --primary-color: #3498db;
+  --primary-contrast: #fff;
+  --btn-bg: var(--primary-color);
+  --btn-hover: #2980b9;
+  --btn-radius: 4px;
+  --font-base: 14px;
+  --font-small: 12px;
+  --table-header-bg: #ecf0f1;
+  --table-alt-bg: #f9f9f9;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-base);
+  background: #fafafa;
+  color: #2d3436;
+}
+
+#container {
+  display: flex;
+  height: 100%;
+}
+
+#sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+#sidebar h2 {
+  margin-top: 0;
+  color: var(--sidebar-text);
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+#sidebar li {
+  margin-bottom: 12px;
+}
+
+#sidebar a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--sidebar-text);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+#sidebar a:hover {
+  background: var(--sidebar-hover);
+}
+
+#sidebar a.active {
+  background: var(--primary-color);
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#missrate-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#missrate-toolbar label {
+  margin-left: 8px;
+}
+
+#missrate-container {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  overflow: hidden;
+}
+
+#missrate-left, #missrate-right {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#missrate-left h3, #missrate-right h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+#missrate-left-table, #missrate-right-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-small);
+  table-layout: fixed;
+}
+
+#missrate-left-table th, #missrate-left-table td,
+#missrate-right-table th, #missrate-right-table td {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#missrate-left-table th, #missrate-right-table th {
+  background: var(--table-header-bg);
+  position: relative;
+  cursor: col-resize;
+  font-weight: 600;
+}
+
+#missrate-left-table tr:nth-child(even), #missrate-right-table tr:nth-child(even) {
+  background: var(--table-alt-bg);
+}
+
+#toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#toolbar label {
+  margin-left: 8px;
+}
+
+button {
+  background: var(--btn-bg);
+  color: var(--primary-contrast);
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.9em;
+}
+
+button:hover,
+button:focus {
+  background: var(--btn-hover);
+  outline: none;
+}
+
+input[type="date"],
+select {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+#table-container {
+  flex: 1;
+  overflow: auto;
+}
+
+#results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-small); /* smaller font */
+  table-layout: fixed;
+}
+
+#results-table th, #results-table td {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#results-table th {
+  background: var(--table-header-bg);
+  position: relative;
+  cursor: col-resize;
+  font-weight: 600;
+}
+
+#results-table tr:nth-child(even) {
+  background: var(--table-alt-bg);
+}
+
+/* resizer handle */
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+}
+
+
+
+/* modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 800px;
+}
+#detailTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+#detailTable th, #detailTable td {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  text-align: left;
+}
+#detailTable th {
+  background: #e0e0e0;
+}
+#detailTable th {
+  position: relative;
+  cursor: col-resize;
+}
+
+#closeDetail {
+  padding: 6px 12px;
+}

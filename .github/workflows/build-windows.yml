@@ -1,0 +1,35 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      # 关键：sqlite3 必须为 Windows 重新编译
+      - name: Rebuild native modules
+        run: npx electron-rebuild
+
+      - name: Build Windows app
+        run: npm run build:win
+
+      - name: Upload exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: SafePatrolAdmin-Windows
+          path: dist/**/SafePatrolAdmin.exe
