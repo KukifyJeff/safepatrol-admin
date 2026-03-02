@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build Windows Installer
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 18
 
-      # ✅ 新增：安装 Windows C++ 构建环境（关键）
+      # 关键：给 sqlite3 / native module 用
       - name: Setup MSVC & Windows SDK
         uses: ilammy/msvc-dev-cmd@v1
 
@@ -28,11 +28,11 @@ jobs:
       - name: Rebuild native modules
         run: npx electron-rebuild
 
-      - name: Build Windows app
+      - name: Build Windows installer
         run: npm run build:win
 
-      - name: Upload exe
+      - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: SafePatrolAdmin-Windows
-          path: dist/**/SafePatrolAdmin.exe
+          name: SafePatrolAdmin-Windows-Installer
+          path: dist/*.exe
