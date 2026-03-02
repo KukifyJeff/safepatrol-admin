@@ -35,12 +35,12 @@
   },
 
   "dependencies": {
-    "electron": "^26.0.0",
     "exceljs": "^4.3.0",
     "sqlite3": "^5.1.6"
   },
 
   "devDependencies": {
-    "electron-builder": "^24.0.0"
+    "electron-builder": "^24.0.0",
+    "electron": "^26.0.0"
   }
 }
